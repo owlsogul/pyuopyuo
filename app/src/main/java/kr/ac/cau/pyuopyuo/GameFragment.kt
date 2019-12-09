@@ -9,6 +9,12 @@ import androidx.fragment.app.Fragment
 
 class GameFragment : Fragment() {
 
+    var red = R.drawable.red
+    var blue = R.drawable.blue
+    var yellow = R.drawable.yellow
+    var green = R.drawable.green
+    var purplue = R.drawable.purple
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -18,6 +24,6 @@ class GameFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_game, container, false)
     }
 
-
+    
 
 }
