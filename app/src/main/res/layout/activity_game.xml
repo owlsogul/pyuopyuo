@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".game">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="223dp"
+        android:layout_height="34dp"
+        android:text="TextView"
+        app:layout_constraintTop_toBottomOf="@+id/main_player"
+        tools:layout_editor_absoluteX="29dp" />
+
     <fragment
         android:id="@+id/player_1"
         android:name="kr.ac.cau.pyuopyuo.EmptyFragment"
@@ -54,5 +62,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.591" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="199dp"
+        android:layout_height="37dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/player_1"
+        tools:layout_editor_absoluteX="285dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="199dp"
+        android:layout_height="37dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/player_1"
+        tools:layout_editor_absoluteX="285dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="200dp"
+        android:layout_height="36dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/player_2"
+        tools:layout_editor_absoluteX="505dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="195dp"
+        android:layout_height="32dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/player_3"
+        tools:layout_editor_absoluteX="733dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
