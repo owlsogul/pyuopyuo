@@ -1,5 +1,6 @@
 package kr.ac.cau.pyuopyuo.model
 
+import kr.ac.cau.pyuopyuo.PlaygroundDelegate
 import java.util.*
 
 /**
@@ -9,6 +10,11 @@ class Playground {
 
     val ROW = 14
     val COLUMN = 8
+    var delegate: PlaygroundDelegate? = null
+
+    constructor(delegate: PlaygroundDelegate?) {
+        this.delegate = delegate
+    }
 
     var playground = Array<Array<Pyuo?>> (ROW) { Array<Pyuo?>(COLUMN, { null }) }
 
@@ -24,7 +30,17 @@ class Playground {
     }
 
     fun canRotate(): Boolean{
-        return false;
+
+        var mainMove = findOneMoveStatus(PyuoStatus.MainMove)
+        var subMove = findOneMoveStatus(PyuoStatus.SubMove)
+        if (mainMove == null || subMove == null) return false;
+        // 회전 행렬값
+        var toX = subMove.y - mainMove.y + mainMove.x
+        var toY = mainMove.x - subMove.x + mainMove.y
+
+        return (getPyuo(toX, toY) == null) &&
+                (0 <= toX && toX < ROW) &&
+                (0 <= toY && toY < COLUMN)
     }
 
     /**
@@ -56,6 +72,7 @@ class Playground {
             fallPyuo()
             tempScore = checkScoreCondition()
         }
+        delegate?.onDoneScoring(this, brokenPyou);
         return brokenPyou
     }
 
