@@ -46,6 +46,23 @@ class Playground {
      * 빈칸있으면 뿌요 떨어뜨리는 함수
      */
     fun fallPyuo(){
+        var y: Int = COLUMN-1;
+        var x: Int = 0;
+
+        while (x < ROW){
+            while(y > 0){
+                if (playground[y][x] == null){
+                    var tempY = y - 1;
+                    while (tempY >= 0){
+                        playground[tempY][x].let { it!!.y = tempY+1 }
+                        playground[tempY+1][x] = playground[tempY][x]
+                        tempY--;
+                    }
+                }
+                y--;
+            }
+            x++;
+        }
 
     }
 
