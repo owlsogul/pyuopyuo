@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import kr.ac.cau.pyuopyuo.model.Playground
 import java.util.LinkedList
 import java.util.Queue
 import kotlin.random.Random
 
 
-class GameFragment : Fragment() {
+class GameFragment : Fragment(), PlaygroundDrawer {
 
     var red = R.drawable.red
     var blue = R.drawable.blue
@@ -82,6 +83,10 @@ class GameFragment : Fragment() {
         for (i in 1..100){
             buffer.add(Pyuo(pyuo.get(Random.nextInt(0,5)),pyuo.get(Random.nextInt(0,5))))
         }
+    }
+
+    override fun drawPlayground(playgroud: Playground) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     // 1. 키보드로 회전 인터럽트 받음
