@@ -8,8 +8,13 @@ import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import kr.ac.cau.pyuopyuo.controller.PlaygroundController
 
 class game : AppCompatActivity() {
+
+    /** 플레이그라운드 컨트롤러 */
+    var playgroundCon: PlaygroundController = PlaygroundController()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
