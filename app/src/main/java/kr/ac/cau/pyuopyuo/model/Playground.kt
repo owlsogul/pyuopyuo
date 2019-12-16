@@ -17,12 +17,29 @@ class Playground {
         else return playground[y][x];
     }
 
+    fun findOneMoveStatus(moveStatus: PyuoStatus): Pyuo? {
+        var moveContainer = playground.filter { it.filter { (moveStatus == it?.moveStatus) }.size > 0 };
+        if (moveContainer.size > 0) return moveContainer[0][0]
+        else return null;
+    }
+
+    fun canRotate(): Boolean{
+        return false;
+    }
 
     /**
-     * 내려오는 뿌요 충돌 감지하는 함수
+     * 내려오는 뿌요가 충돌했는지 감지하는 함수
      */
-    fun checkCollision(){
-        playground.
+    fun checkCollision(): Boolean{
+        // find main move, sub move
+        var mainMove = findOneMoveStatus(PyuoStatus.MainMove)
+        var subMove = findOneMoveStatus(PyuoStatus.SubMove)
+        if (mainMove == null || subMove == null) return false;
+
+        return (getPyuo(mainMove!!.x, mainMove!!.y + 1) != null) || // 메인 뿌요 아래 무엇인가 있거나,
+                (getPyuo(subMove!!.x, subMove!!.y + 1) != null) || // 서브 뿌요 아래 무엇인가 있거나,
+                (mainMove.y + 1 >= COLUMN) || // 메인 뿌요아래가 아무것도 없거나
+                (subMove.y + 1 >= COLUMN)   // 서브 뿌요 아래 어무것도 없을 경우
     }
 
     /**
