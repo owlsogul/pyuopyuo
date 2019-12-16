@@ -23,7 +23,7 @@ class Playground {
         else return playground[y][x];
     }
 
-    private fun findOneMoveStatus(moveStatus: PyuoStatus): Pyuo? {
+    fun findOneMoveStatus(moveStatus: PyuoStatus): Pyuo? {
         var moveContainer = playground.filter { it.filter { (moveStatus == it?.moveStatus) }.size > 0 };
         if (moveContainer.size > 0) return moveContainer[0][0]
         else return null;
@@ -79,7 +79,7 @@ class Playground {
     /**
      * 빈칸있으면 뿌요 떨어뜨리는 함수
      */
-    private fun fallPyuo(){
+    fun fallPyuo(){
         var y: Int = COLUMN-1;
         var x: Int = 0;
 

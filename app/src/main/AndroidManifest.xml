@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".game"
+        <activity android:name=".GameActivity"
             android:screenOrientation="landscape"
             ></activity>
         <activity android:name=".MainActivity"
