@@ -3,13 +3,13 @@ package kr.ac.cau.pyuopyuo.model
 import kr.ac.cau.pyuopyuo.PlaygroundDelegate
 import java.util.*
 
+const val ROW = 14
+const val COLUMN = 8
 /**
  * 뿌요들이 들어있는 게임 판 모델
  */
 class Playground {
 
-    val ROW = 14
-    val COLUMN = 8
     var delegate: PlaygroundDelegate? = null
 
     constructor(delegate: PlaygroundDelegate?) {

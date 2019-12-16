@@ -31,6 +31,7 @@ class PlaygroundController: PlaygroundDelegate{
         mainPg.fallPyuo();
         mainPg.checkCollision();
         mainPg.afterCollision();
+        activity.endTurn();
     }
 
     override fun onDoneScoring(playground: Playground, score: Vector<Int>) {

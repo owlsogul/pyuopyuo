@@ -8,12 +8,16 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import kr.ac.cau.pyuopyuo.model.Playground
 import kr.ac.cau.pyuopyuo.model.Pyuo
 import java.util.LinkedList
 import java.util.Queue
 import kotlin.random.Random
+import androidx.constraintlayout.widget.ConstraintSet
+import kr.ac.cau.pyuopyuo.model.COLUMN
+import kr.ac.cau.pyuopyuo.model.ROW
 
 
 class GameFragment : Fragment(), PlaygroundDrawer {
@@ -30,7 +34,7 @@ class GameFragment : Fragment(), PlaygroundDrawer {
     var btnRight: Button? = null;
     var btnRotate: Button? = null;
     var txtScore: TextView? = null;
-
+    var gameLayout: ConstraintLayout? = null;
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,6 +47,7 @@ class GameFragment : Fragment(), PlaygroundDrawer {
         btnRight = view.findViewById<Button>(R.id.btnRight)
         btnRotate = view.findViewById<Button>(R.id.btnRotate)
         txtScore = view.findViewById(R.id.txtScroe)
+        gameLayout = view.findViewById(R.id.gameLayout);
         if (this.arguments!!.getInt(GAMEFRAGMENT_ARG1) != 1){
             btnDown?.visibility = View.GONE
             btnLeft?.visibility = View.GONE
@@ -53,6 +58,7 @@ class GameFragment : Fragment(), PlaygroundDrawer {
         btnLeft!!.setOnClickListener { (activity as GameActivity).onLeft(); Log.d(TAG, "onLeft") }
         btnRight!!.setOnClickListener { (activity as GameActivity).onRight(); Log.d(TAG, "onRight") }
         btnRotate!!.setOnClickListener { (activity as GameActivity).onRotate(); Log.d(TAG, "onRotate") }
+
         return view
     }
 
@@ -64,6 +70,10 @@ class GameFragment : Fragment(), PlaygroundDrawer {
                 pyuo?.let {
                     val imgView: ImageView  = ImageView(this.context)
                     imgView.setImageResource(colors[it!!.color.code])
+                    val constraints = ConstraintSet()
+                    constraints.constrainWidth(imgView.id, gameLayout!!.width/ COLUMN)
+                    constraints.constrainHeight(imgView.id, gameLayout!!.height/ ROW)
+                    constraints.setMargin(R.id.gameLayout, ConstraintSet.BOTTOM, gameLayout!!.height / COLUMN * y )
                 }
             }
         }

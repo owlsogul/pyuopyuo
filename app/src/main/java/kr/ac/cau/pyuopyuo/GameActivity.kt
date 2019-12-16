@@ -106,6 +106,10 @@ class GameActivity : AppCompatActivity() {
         Toast.makeText(this, "rotate", Toast.LENGTH_SHORT)
     }
 
+    fun endTurn(){
+
+    }
+
     private fun createGameFragment(num: Int): GameFragment{
         val f = GameFragment()
         val args = Bundle()
