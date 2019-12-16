@@ -9,11 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import kr.ac.cau.pyuopyuo.controller.PlaygroundController
+import java.util.*
 
 class game : AppCompatActivity() {
 
     /** 플레이그라운드 컨트롤러 */
-    var playgroundCon: PlaygroundController = PlaygroundController()
+    var pgCon: PlaygroundController = PlaygroundController()
+    /** 플레이그라운드 그리는 뷰어들 */
+    var pgDrawers: Vector<PlaygroundDrawer> = Vector()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
