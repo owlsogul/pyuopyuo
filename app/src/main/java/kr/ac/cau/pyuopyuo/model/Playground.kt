@@ -17,7 +17,7 @@ class Playground {
         else return playground[y][x];
     }
 
-    fun findOneMoveStatus(moveStatus: PyuoStatus): Pyuo? {
+    private fun findOneMoveStatus(moveStatus: PyuoStatus): Pyuo? {
         var moveContainer = playground.filter { it.filter { (moveStatus == it?.moveStatus) }.size > 0 };
         if (moveContainer.size > 0) return moveContainer[0][0]
         else return null;
@@ -43,9 +43,26 @@ class Playground {
     }
 
     /**
+     * 충돌 후 처리해야하는 일을 기술한 함수
+     * @return Vector<Int> 부셔진 뿌요 뭉텅이들의 개수들
+     */
+    fun afterCollision(): Vector<Int> {
+        fallPyuo(); // 메인 뿌요와 서브 뿌요가 높이가 다를수 있으므로 내린다.
+        var brokenPyou: Vector<Int> = Vector()
+        var tempScore: Vector<Vector<Pyuo>> = checkScoreCondition()
+        while(tempScore.size > 0){
+            tempScore.forEach{ brokenPyou.add(it.size) }
+            eliminateScoredPyuo(tempScore)
+            fallPyuo()
+            tempScore = checkScoreCondition()
+        }
+        return brokenPyou
+    }
+
+    /**
      * 빈칸있으면 뿌요 떨어뜨리는 함수
      */
-    fun fallPyuo(){
+    private fun fallPyuo(){
         var y: Int = COLUMN-1;
         var x: Int = 0;
 
@@ -56,12 +73,12 @@ class Playground {
                     while (tempY >= 0){
                         playground[tempY][x].let { it!!.y = tempY+1 }
                         playground[tempY+1][x] = playground[tempY][x]
-                        tempY--;
+                        tempY--
                     }
                 }
-                y--;
+                y--
             }
-            x++;
+            x++
         }
 
     }
@@ -69,7 +86,7 @@ class Playground {
     /**
      * 4개 이상 뿌요가 있는지 확인해서 터진 뿌요 리턴하는 함수
      */
-    fun checkScoreCondition(): Vector<Vector<Pyuo>> {
+    private fun checkScoreCondition(): Vector<Vector<Pyuo>> {
 
         var colorPlayground = playground.clone().map{ it.map { it?.color?.code ?: -1; } as Array<Int> }
         var candidates = LinkedList<Pyuo>();
@@ -116,6 +133,12 @@ class Playground {
             }
         }
         return retVector;
+    }
+
+    private fun eliminateScoredPyuo(pyuos: Vector<Vector<Pyuo>>){
+        pyuos.forEach { vector -> vector.forEach { pyuo->
+            playground[pyuo.y][pyuo.x] = null;
+        }}
     }
 
 }
